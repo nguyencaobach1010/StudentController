@@ -45,11 +45,10 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addStudentRequestParam(@RequestParam("name") String name, @RequestParam("age") int age) {
-        StudentEntity student = new StudentEntity();
-        student.setName(name);
-        student.setAge(age);
-        studentEntity.add(student);
+    public ResponseEntity<?> addStudentRequestParam(@RequestParam("name") String name, @RequestParam("age") int age, StudentEntity newStudent) {
+        newStudent.setName(name);
+        newStudent.setAge(age);
+        studentEntity.add(newStudent);
         return new ResponseEntity<>(studentEntity,HttpStatus.OK);
     }
 }

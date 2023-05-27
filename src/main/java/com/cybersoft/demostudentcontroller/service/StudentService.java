@@ -4,6 +4,7 @@ import com.cybersoft.demostudentcontroller.entity.StudentEntity;
 import com.cybersoft.demostudentcontroller.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -14,7 +15,8 @@ public class StudentService implements StudentServiceImp{
 
     @Override
     public List<StudentEntity> getAllStudents() {
-        return null;
+        List<StudentEntity> list = studentRepository.findAll();
+        return list;
     }
 
     @Override

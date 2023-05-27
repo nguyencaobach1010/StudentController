@@ -25,7 +25,7 @@ public class StudentController {
             System.out.println(item.getName());
             System.out.println(item.getAge());
         }
-        return new ResponseEntity<>(list , HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @PostMapping("/addStudent")
@@ -37,20 +37,19 @@ public class StudentController {
     }
 
     @PostMapping("/student/{name}/{age}")
-    public List<StudentEntity> addStudentPathVariable(@PathVariable("name") String name, @PathVariable("age") int age) {
-        StudentEntity student = new StudentEntity();
-        student.setName(name);
-        student.setAge(age);
-        studentEntity.add(student);
-        return studentEntity;
+    public ResponseEntity<?> addStudentPathVariable(@PathVariable String name, @PathVariable int age, StudentEntity newStudent ) {
+        newStudent.setName(name);
+        newStudent.setAge(age);
+        newStudent = studentServiceImp.addStudent(newStudent);
+        return new ResponseEntity<>(newStudent,HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public List<StudentEntity> addStudentRequestParam(@RequestParam("name") String name, @RequestParam("age") int age) {
+    public ResponseEntity<?> addStudentRequestParam(@RequestParam("name") String name, @RequestParam("age") int age) {
         StudentEntity student = new StudentEntity();
         student.setName(name);
         student.setAge(age);
         studentEntity.add(student);
-        return studentEntity;
+        return new ResponseEntity<>(studentEntity,HttpStatus.OK);
     }
 }
